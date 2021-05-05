@@ -1,8 +1,15 @@
-import MonteCarlo from './components/MonteCarlo'
+import MonteCarlo from './MonteCarlo/MonteCarlo'
+import Footer from './components/Footer'
+import Header from './components/Header'
+
 function App() {
   return (
     <div className="App">
-      <MonteCarlo />
+      <Header />
+      <main style={{margin:"20px", }}>
+        <MonteCarlo />
+      </main>
+      <Footer />
     </div>
   );
 }

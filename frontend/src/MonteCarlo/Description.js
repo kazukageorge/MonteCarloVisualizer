@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 
 const Description = () => {
@@ -6,10 +7,14 @@ const Description = () => {
 
         <div>
             <h2>Description</h2>
+            <Container>
 
-            // Image of simulation here
+
+                // Image of simulation here
             <p>Monte Carlo simulation is a method used to approximate numerical values. One example is approximating &pi;.</p>
-            <p> Detailed explation here</p>
+                <p> Detailed explation here</p>
+            </Container>
+
         </div>
 
     )
