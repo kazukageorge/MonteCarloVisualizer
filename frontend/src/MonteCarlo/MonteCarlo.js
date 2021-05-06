@@ -7,7 +7,6 @@ import Simulation from './Simulation'
 
 const MonteCarlo = () => (
     <Container >
-
         <div>
             <h1 style={{marginBottom:"20px", marginTop:"40px"}}>
                 <strong>

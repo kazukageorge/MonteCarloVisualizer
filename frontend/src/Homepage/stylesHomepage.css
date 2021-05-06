@@ -1,0 +1,9 @@
+.txt:hover {
+  text-decoration: underline;
+  color: #26abff;
+}
+
+
+img:hover { 
+  outline: 3px solid #26abff; 
+  } 

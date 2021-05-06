@@ -1,17 +1,24 @@
 import MonteCarlo from './MonteCarlo/MonteCarlo'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import {BrowserRouter as Router, Route}  from 'react-router-dom'
+import Homepage from './Homepage/Homepage'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main style={{margin:"20px", }}>
-        <MonteCarlo />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+
+      <div className="App">
+        <Header />
+        <main style={{ margin: "20px", }}>
+          <Route path = '/' component={Homepage} exact />
+          <Route path = '/pi' component={MonteCarlo} />
+
+        </main>
+        <Footer />
+      </div>
+    </Router>
+
   );
 }
 

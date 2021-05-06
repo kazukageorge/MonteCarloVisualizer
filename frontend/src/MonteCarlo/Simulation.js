@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
 
+import "./styles.css"
+
 const Simulation = () => {
     // set state
 
@@ -15,7 +17,7 @@ const Simulation = () => {
                     <Col>
                         <Form.Label>
                             <strong>
-                                Set Simulation Iterations
+                                Iterations
                                     </strong>
                         </Form.Label>
 
@@ -82,9 +84,13 @@ const Simulation = () => {
                     className="d-flex justify-items-center"
                 >
 
+
+                    {/* Get rid of the borders when hover image */}
                     <Image
                         src="../images/figure_0.png"
                         className="rounded mx-auto d-block"
+                        width="95%"
+                        // styles={{outline: "10px solid #26abff"}}
                         fluid
                     />
 
