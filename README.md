@@ -19,6 +19,7 @@
 * pip install Pillow
 * pip install matplotlib
 * pip install django-cors-headers
+* pip install numpy
 
 
 #### Activate virtual environment

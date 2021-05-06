@@ -13,10 +13,13 @@ def get_graph():
     return graph
 
 def get_plot(x,y):
-    plt.swtch_backend('AGG')
+    # plt.swtch_backend('AGG')
     plt.figure(figsize=(10,5))
     plt.plot(x,y)
-    plt.tightlayout
+    plt.savefig("figure.png")
+    print('saved')
+
+    # plt.tightlayout
     graph = get_graph()
     return graph
 
