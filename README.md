@@ -7,11 +7,14 @@
 * npm install react-bootstrap bootstrap
 * npm install react-bootstrap-range-slider
 * npm install react-router-dom react-router-bootstrap
+* npm install axios
 
 
 ### Backend
 #### Install the following in the backend directory
 * pip install virtualenv
+* pip install django
+* pip install djangorestframework
 
 #### Activate virtual environment
 virtualenv venv
