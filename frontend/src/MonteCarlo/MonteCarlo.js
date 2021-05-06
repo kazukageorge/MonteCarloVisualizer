@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Container } from 'react-bootstrap';
 import Description from './Description'
+import Parameters from './Parameters'
 import Simulation from './Simulation'
 // import Footer from './Footer'
 
@@ -15,6 +16,8 @@ const MonteCarlo = () => (
                 </strong>
             </h1>
                 <Description />
+
+                <Parameters />
 
                 <Simulation />
         </div>

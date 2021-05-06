@@ -15,6 +15,11 @@
 * pip install virtualenv
 * pip install django
 * pip install djangorestframework
+* pip install django-cors-headers 
+* pip install Pillow
+* pip install matplotlib
+* pip install django-cors-headers
+
 
 #### Activate virtual environment
 virtualenv venv

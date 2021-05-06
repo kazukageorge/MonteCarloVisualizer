@@ -19,7 +19,7 @@ const Navigation = () => {
                                 className="rounded mx-auto d-block"
                                 width="95%"
                                 style={{hover: ''}}
-                                fluid
+                                fluid="true"
                             />
                             <h4 className='text-center' >
                                 <strong className="txt" >
