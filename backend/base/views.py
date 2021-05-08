@@ -10,6 +10,7 @@ from random import uniform
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import time
 
 
 # Create your views here.
@@ -29,9 +30,11 @@ def getRoutes(request):
 @api_view(['GET'])
 def getTest(request):
 
+    t = time.time()
+
     # Number of simulations
     N = 100
-    frame_rate = 10
+    frame_rate = 2
 
     # generate template figure
     fig, (ax, ax1) = plt.subplots(1, 2, figsize=(10, 5))
@@ -55,7 +58,13 @@ def getTest(request):
     y = np.sin(an)
     plt.plot(x,y)
     plt.savefig("figure.png")
-    print('saved')
+    # print('saved')
+    print("\n\n\n")
+    elapsed = time.time() - t
+    print("Time {} sec".format(elapsed) )
+    print("\n\n\n")
+
+
 
     return Response('Success')
 
@@ -122,3 +131,6 @@ def generatePoints(fig, ax, ax1, N, frame_rate):
 
     return fig, ax, inside, outside
 
+
+def getTest2(request):
+    return render(request, 'main.html', {})

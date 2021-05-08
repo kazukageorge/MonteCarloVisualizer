@@ -1,5 +1,7 @@
 import React, { useState, Component } from 'react';
+import { useDebugValue } from 'react';
 import { Form, Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
+import Simulation from './Simulation'
 
 import "./styles.css"
 
@@ -7,24 +9,25 @@ class Parameters extends Component {
     // set state
 
     state = {
-        'iteration': 1000,
+        'iteration': 10,
         'framerate': 10,
+        'showSimulation': false,
     };
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidMount() {
+        this.setState({
+            showSimulation: false,
+        })
+    }
+
+    componentDidUpdate() {
 
         // Toggle bar update 
-        const framerate = Number(this.state.framerate)
-        const iteration = Number(this.state.iteration)
-
-        if (framerate > iteration) {
+        if (Number(this.state.framerate) > Number(this.state.iteration)) {
             this.setState({
-                framerate: iteration
+                framerate: Number(this.state.iteration)
             })
         }
-
-        // Simulation rendering
-
     }
 
 
@@ -41,24 +44,52 @@ class Parameters extends Component {
     }
 
     framerateChangeHandler = (e) => {
-        const value = e.target.value
+        let value = e.target.value
 
-        if (this.state.framerate > this.state.framerateiteration) {
-            this.setState({
-                framerate: this.state.iteration
-            })
-        } else {
-            this.setState({
-                framerate: value
-            })
+        if (value > 500) {
+            value = 1000
+        } else if (value > 200) {
+            value = 500
+        } else if (useDebugValue > 100) {
+            value = 200
+        } else if (value > 50) {
+            value = 100
+        } else if (value > 20) {
+            value = 50
+        } else if (value > 10) {
+            value = 20
+        } else if (value > 5) {
+            value = 10
+        } else if (value > 2) {
+            value = 5
+        } else if (value > 1) {
+            value = 2
         }
+
+
+        this.setState({
+            framerate: value
+        })
     }
 
     resetHandler = () => {
+
         this.setState({
             iteration: 1000,
             framerate: 10,
+            showSimulation: false,
         })
+
+    }
+
+    async simulateOnClickHandler() {
+        await this.setStateAsync({ showSimulation: true });
+    }
+
+    setStateAsync(state) {
+        return new Promise((resolve) => {
+            this.setState(state, resolve)
+        });
     }
 
     render() {
@@ -81,6 +112,8 @@ class Parameters extends Component {
                                 type="points"
                                 placeholder={this.state.iteration}
                                 style={{ width: "80%" }}
+                                // disabled={true}
+                                onChange={(e) => this.iterationChangeHandler(e)}
                             />
 
                             <input
@@ -108,24 +141,31 @@ class Parameters extends Component {
                                 type="points"
                                 placeholder={this.state.framerate}
                                 style={{ width: "80%" }}
+                                onChange={(e) => this.framerateChangeHandler(e)}
+
                             />
 
                             <input
                                 type="range"
                                 min="1"
-                                max={this.state.iteration}
-                                // step="10"
+                                max={this.state.iteration < 1000 ? this.state.iteration : 1000}
+                                step={1}
                                 name='iteration'
                                 style={{ height: "50%", width: "80%" }}
                                 value={this.state.framerate}
-                                onChange={(e) => this.framerateChangeHandler(e)} />
+                                onChange={(e) => this.framerateChangeHandler(e)}
+                            />
 
                         </Col>
 
                         <Col style={{ marginTop: "80px" }}>
-                            <Button variant="success" type="submit">
+                            <Button
+                                variant="success"
+                                type="submit"
+                                onClick={() => this.simulateOnClickHandler(this.props.iteration, this.props.framerate)}
+                            >
                                 Simulate
-                                    </Button>
+                            </Button>
                             <Button
                                 variant="secondary"
                                 type="submit"
@@ -135,10 +175,26 @@ class Parameters extends Component {
                             </Button>
                         </Col>
                     </Row>
-                < hr/>
+                    < hr />
 
                 </Container>
-              
+                {this.state.showSimulation ?
+                    <Simulation
+                        startSimulation={true}
+                        iteration={this.state.iteration}
+                        framerate={this.state.framerate}
+                        loading={true}
+                    />
+                    :
+                    <div>
+                        <h2 style={{ marginTop: "10px" }} >Simulation </h2>
+
+                    </div>
+
+
+                }
+
+
 
 
             </div>

@@ -19,7 +19,7 @@ const MonteCarlo = () => (
 
                 <Parameters />
 
-                <Simulation />
+                
         </div>
     </Container>
 

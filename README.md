@@ -8,6 +8,7 @@
 * npm install react-bootstrap-range-slider
 * npm install react-router-dom react-router-bootstrap
 * npm install axios
+* npm install react-plotly.js plotly.js
 
 
 ### Backend
