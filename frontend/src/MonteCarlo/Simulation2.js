@@ -1,5 +1,5 @@
-import React, { useState, Component, useEffect } from 'react';
-import { Form, Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap'
 import Plot from 'react-plotly.js';
 import Loader from '../components/Loader'
 import axios from 'axios'
@@ -32,6 +32,10 @@ function Simulation2({ iteration, framerate }) {
         const value = e.target.value
         setCurrentFrame(value)
     }
+
+    // console.log(currentFrame, framerate)
+    // console.log(data)
+    console.log((iteration/ framerate))
 
 
     return (
@@ -98,13 +102,14 @@ function Simulation2({ iteration, framerate }) {
                                 max={(iteration/ framerate) }
                                 name='simulation_value'
                                 style={{ height: "50%", width: "100%" }}
-                                step={framerate}
+                                step={1}
                                 value={currentFrame}
                                 onChange={(e) => iterationChangeHandler(e)}
                             />
                         </Row>
 
-                        <h3 style={{ textAlign: "center", marginTop:"10px" }}> Frame #{currentFrame / framerate} </h3>
+                        <h3 style={{ textAlign: "center", marginTop:"10px" }}> Frame #{currentFrame } </h3>
+                        <h3 style={{ textAlign: "center"}}> Iteration #{currentFrame * framerate } </h3>
 
 
                         <Row style={{ marginTop: "40px" }}>
@@ -123,7 +128,7 @@ function Simulation2({ iteration, framerate }) {
                             </Col>
                             <Col >
                                 <h3 style={{ color: "#FF0000", textAlign: "center" }}>
-                                    Points Inside
+                                    Points Outside
                                   
                                         
                                     

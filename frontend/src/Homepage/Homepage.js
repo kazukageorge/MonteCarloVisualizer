@@ -1,4 +1,3 @@
-import react from 'react'
 import { Container } from 'react-bootstrap'
 import Description from './Description'
 import Navigation from './Navigation'

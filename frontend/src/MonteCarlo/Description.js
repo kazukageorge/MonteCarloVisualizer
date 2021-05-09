@@ -10,7 +10,7 @@ const Description = () => {
             <Container>
 
 
-                // Image of simulation here
+                Image of simulation here
             <p>Monte Carlo simulation is a method used to approximate numerical values. One example is approximating &pi;.</p>
                 <p> Detailed explation here</p>
             </Container>

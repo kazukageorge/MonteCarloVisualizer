@@ -1,7 +1,6 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import { useDebugValue } from 'react';
-import { Form, Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
-import Simulation from './Simulation'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import Simulation2 from './Simulation2'
 
 import "./styles.css"
@@ -11,7 +10,7 @@ class Parameters extends Component {
 
     state = {
         'iteration': 1000,
-        'framerate': 10,
+        'framerate': 100,
         'showSimulation': false,
     };
 
@@ -113,18 +112,18 @@ class Parameters extends Component {
                                 type="points"
                                 placeholder={this.state.iteration}
                                 style={{ width: "80%" }}
-                                // disabled={true}
+                                disabled={true}
                                 onChange={(e) => this.iterationChangeHandler(e)}
                             />
 
                             <input
                                 type="range"
-                                min="1"
+                                min="0"
                                 max="10000"
                                 name='simulation_value'
                                 style={{ height: "50%", width: "80%" }}
-                                // step = "50"
-                                value={this.state.iteration}
+                                step = "10"
+                                value={this.state.iteration - 1 }
                                 onChange={(e) => this.iterationChangeHandler(e)}
                             />
                         </Col>

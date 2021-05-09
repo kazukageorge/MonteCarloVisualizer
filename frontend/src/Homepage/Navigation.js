@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Image, Form } from 'react-bootstrap'
+import { Container, Row, Col, Image,  } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import './stylesHomepage.css'
 
@@ -20,6 +20,7 @@ const Navigation = () => {
                                 width="95%"
                                 style={{hover: ''}}
                                 fluid="true"
+                                alt="pi"
                             />
                             <h4 className='text-center' >
                                 <strong className="txt" >
@@ -60,6 +61,7 @@ const Navigation = () => {
                                 src="../images/figure_0.png"
                                 className="rounded mx-auto d-block"
                                 width="95%"
+                                alt="protein"
                                 fluid
                             />
                             <h4 className='text-center' >

@@ -1,8 +1,7 @@
 import React from 'react'
-import { Form, Container } from 'react-bootstrap';
+import {  Container } from 'react-bootstrap';
 import Description from './Description'
 import Parameters from './Parameters'
-import Simulation from './Simulation'
 // import Footer from './Footer'
 
 
