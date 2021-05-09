@@ -32,17 +32,27 @@ def get_plot(x,y):
     # https://www.youtube.com/watch?v=jrT6NiM46jk
 
 
-def getDataPoints(N):
+def getDataPoints(N, burn):
 
-    X = [uniform(-1,1) for _ in range(N)]
-    Y = [uniform(-1,1) for _ in range(N)]
-    Color = ['#FF0000' if X[i]**2 + Y[i]**2 > 1 else '#45b6fe' for i in range(N)]
+    X = [uniform(-1,1) for _ in range(N+1)]
+    Y = [uniform(-1,1) for _ in range(N+1)]
+    Color = ['#FF0000' if X[i]**2 + Y[i]**2 > 1 else '#45b6fe' for i in range(N+1)]
 
     inside = 0
     outside = 0
-    approx = 1
-    data = [{} for _ in range(N)]
-    for i in range(N):
+    approx = 0
+
+    data = [{} for _ in range(N+1)]
+    # data[0] is just a circle
+    data[0]['x'] = []
+    data[0]['y'] = []
+    data[0]['color'] = []
+
+    data[0]['inside'] = 0
+    data[0]['outside'] = 0
+    data[0]['approx_pi'] = 0
+
+    for i in range(1,N+1):
         if X[i]**2 + Y[i]**2 > 1:
             outside += 1
         else:
@@ -51,15 +61,17 @@ def getDataPoints(N):
         if inside > 1 and outside > 1:
             approx = 4 * (inside / (inside + outside))
 
-        data[i]['x'] = X[0:i+1]
-        data[i]['y'] = Y[0:i+1]
-        data[i]['color'] = Color[0:i+1]
+        data[i]['x'] = X[1:i+1]
+        data[i]['y'] = Y[1:i+1]
+        data[i]['color'] = Color[1:i+1]
 
         data[i]['inside'] = inside
         data[i]['outside'] = outside
         data[i]['approx_pi'] = approx
 
-    return data
+    
+
+    return data[::burn]
 
 
 def getCircle():

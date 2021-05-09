@@ -11,17 +11,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 import time
+import re
 
 
 # Create your views here.
 
 @api_view(['GET'])
 def getData(request, pk):
-    N = int(pk)
-    dataPoints = getDataPoints(N)
+
+   
+    args = re.findall('=[0-9]+', str(pk))
+    N = int(args[0][1:])
+    burn = int(args[1][1:])
+
+    dataPoints = getDataPoints(N, burn)
     dataCircle = getCircle()
 
     data = {'points': dataPoints, 'circle': dataCircle}
+
+    print(data)
 
     return Response(data)
 

@@ -6,20 +6,22 @@ import axios from 'axios'
 
 
 
-function Simulation2({ iteration }) {
+function Simulation2({ iteration, framerate }) {
 
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
     const [currentFrame, setCurrentFrame] = useState(0)
 
+
     useEffect(() => {
         if (loading) {
-            async function getData(iteration) {
-                const { data } = await axios.get(`http://127.0.0.1:8000/MonteCarlo/${iteration}`)
+            async function getData(iteration, framerate) {
+                const { data } = await axios.get(`http://127.0.0.1:8000/MonteCarlo/iteration=${iteration}_burn=${framerate}`)
                 setData(data)
                 setLoading(false)
+                console.log(data)
             }
-            getData(iteration)
+            getData(iteration, framerate)
 
         }
 
@@ -91,18 +93,18 @@ function Simulation2({ iteration }) {
 
                             <input
                                 type="range"
-                                min="0"
+                                min={0}
                                 // max={this.props.iteration / this.props.framerate}
-                                max={iteration - 1}
+                                max={(iteration/ framerate) }
                                 name='simulation_value'
                                 style={{ height: "50%", width: "100%" }}
-                                step="1"
+                                step={framerate}
                                 value={currentFrame}
                                 onChange={(e) => iterationChangeHandler(e)}
                             />
                         </Row>
 
-                        <h3 style={{ textAlign: "center", marginTop:"10px" }}> Frame #{currentFrame} </h3>
+                        <h3 style={{ textAlign: "center", marginTop:"10px" }}> Frame #{currentFrame / framerate} </h3>
 
 
                         <Row style={{ marginTop: "40px" }}>
@@ -111,33 +113,36 @@ function Simulation2({ iteration }) {
                                 <h3 style={{ color: "#45b6fe", textAlign: "center" }}>
                                     Points Inside
                                   
-                                        <h3 style={{ color: "black", marginTop:"10px" }}>
-                                            {data.points[currentFrame].inside}
-                                        </h3>
+                                     
                                     
                                 </h3>
+                                <h3 style={{ color: "black", marginTop:"10px", textAlign: "center"  }}>
+                                            {data.points[currentFrame].inside}
+                                        </h3>
 
                             </Col>
                             <Col >
                                 <h3 style={{ color: "#FF0000", textAlign: "center" }}>
                                     Points Inside
                                   
-                                        <h3 style={{ color: "black", marginTop:"10px" }}>
-                                            {data.points[currentFrame].outside}
-                                        </h3>
+                                        
                                     
                                 </h3>
+                                <h3 style={{ color: "black", marginTop:"10px" , textAlign: "center"}}>
+                                            {data.points[currentFrame].outside}
+                                        </h3>
 
                             </Col>
                             <Col >
                                 <h3 style={{ color: "black", textAlign: "center" }}>
                                     &pi; 
                                   
-                                        <h3 style={{marginTop:"10px" }}>
-                                            {data.points[currentFrame].approx_pi.toFixed(5)}
-                                        </h3>
+                                     
                                     
                                 </h3>
+                                <h3 style={{marginTop:"10px" , textAlign: "center"}}>
+                                            {data.points[currentFrame].approx_pi.toFixed(5)}
+                                        </h3>
 
                             </Col>
                         </Row>

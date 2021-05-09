@@ -187,9 +187,9 @@ class Parameters extends Component {
                     //     loading={true}
                     // />
 
-                    <Simulation2 
-                    iteration={this.state.iteration}
-                    
+                    <Simulation2
+                        iteration={this.state.iteration}
+                        framerate={this.state.framerate}
                     />
                     :
                     <div>
