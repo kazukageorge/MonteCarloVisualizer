@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from random import uniform
-from .utils import get_plot
+from .utils import getDataPoints, getCircle
 
 
 from random import uniform
@@ -14,6 +14,16 @@ import time
 
 
 # Create your views here.
+
+@api_view(['GET'])
+def getData(request, pk):
+    N = int(pk)
+    dataPoints = getDataPoints(N)
+    dataCircle = getCircle()
+
+    data = {'points': dataPoints, 'circle': dataCircle}
+
+    return Response(data)
 
 
 

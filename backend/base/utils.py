@@ -2,6 +2,12 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 
+from random import uniform
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+import time
+
 def get_graph():
     buffer = BytesIO()
     plt.savefig(buffer, format="png")
@@ -24,6 +30,30 @@ def get_plot(x,y):
     return graph
 
     # https://www.youtube.com/watch?v=jrT6NiM46jk
+
+
+def getDataPoints(N):
+
+    X = [uniform(-1,1) for _ in range(N)]
+    Y = [uniform(-1,1) for _ in range(N)]
+    Color = ['#FF0000' if X[i]**2 + Y[i]**2 > 1 else '#45b6fe' for i in range(N)]
+
+    data = [{} for _ in range(N)]
+    for i in range(N):
+        data[i]['x'] = X[0:i+1]
+        data[i]['y'] = Y[0:i+1]
+        data[i]['color'] = Color[0:i+1]
+
+    return data
+
+
+def getCircle():
+    an = np.linspace(0, 2 * np.pi, 100)
+    data={'x':np.cos(an), 'y': np.sin(an), 'color': '#45b6fe'}
+    
+    return data
+
+
 
 
 

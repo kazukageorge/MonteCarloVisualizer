@@ -2,17 +2,16 @@ import React, { useState, Component } from 'react';
 import { Form, Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
 import Plot from 'react-plotly.js';
 import Loader from '../components/Loader'
+import axios from 'axios'
 
 
 class Simulation extends Component {
+
+
     state = {
         data: [
-            { 'x': [0.1], 'y': [0.1], 'color': '#FF0000' },
-            { 'x': [0.1, 0.2], 'y': [0.1, 0.2], 'color': '#FF0000' },
-            { 'x': [0.1, 0.2, 0.3], 'y': [0.1, 0.2, 0.3], 'color': '#FF0000' },
-
         ],
-        loading: this.props.loading,
+        loading: true,
         currentFrame: 0,
 
         // simulate: this.props.iteration,
@@ -22,75 +21,29 @@ class Simulation extends Component {
 
     componentDidMount() {
 
-        //     let startSimulation = this.props.startSimulation
+        console.log(this.props)
 
-        //     if (startSimulation) {
-        //         const min = -1
-        //         const max = 1
-        //         for (let i = 0; i < this.props.iteration; i++) {
-        //             // console.log(i)
-        //             let x = min + Math.random() * (max - min)
-        //             let y = min + Math.random() * (max - min)
-        //             let color = ''
+        async function getData(iteration) {
+            console.log(iteration)
+            const {data} = await axios.get(`http://127.0.0.1:8000/MonteCarlo/${iteration}`)
+            this.setState({
+                data: data,
+                loading: false
+            })
+        }
 
-        //             if (x * x + y * y > 1) {
-        //                 color = '#FF0000'
-        //             } else {
-        //                 color = '#45b6fe'
-        //             }
-        //             if (i == 0) {
-        //                 this.setState({
-        //                     data: this.state.data.push({
-        //                         'x': [x],
-        //                         'y': [y],
-        //                         'color': [color]
-        //                     })
-        //                 })
-        //             } else {
-        //                 var X = Array(...this.state.data[i - 1].x, x)
-        //                 var Y = Array(...this.state.data[i - 1].y, y)
-        //                 var Color = Array(...this.state.data[i - 1].color, color)
+        getData(this.props.iteration)
 
-        //                 var newData = { 'x': X, 'y': Y, 'color': Color }
-        //                 this.setState({
-        //                     data: this.state.data.push(newData)
-        //                 })
-        //             }
-        //             // console.log(this.state)
-        //         }
-        //         console.log(this.state.data)
-        //     }
-        this.setState({
-            loading: false
-        })
+      
     }
 
 
-
-    // componentDidUpdate() {
-    //     // Check if new images are here
-    //     console.log("[Simulation] ComponentDidUpdate")
-    //     async function fetchImages() {
-
-    //         const {data} = await axios.get("http://127.0.0.1:8000/MonteCarlo/SimulationImages")
-    //         this.setState({
-    //             "simulationImages": data,
-    //         })
-    //     }
-
-    //     fetchImages()
-    // }
 
     iterationChangeHandler = (e) => {
         const value = e.target.value
         this.setState({
             currentFrame: value
         })
-        // if (this.state.framerate > this.state.iteration) {
-        //     this.setState({
-        //         framerate: value
-        //     })
-        // }
     }
 
 
@@ -99,35 +52,7 @@ class Simulation extends Component {
     render() {
         console.log(this.state.currentFrame)
 
-        // console.log(this.state.data)
-        // {
-        //     this.state.data.map((d) => (
-        //         console.log(d)
-        //     ))
-        // }
-        // const plots = this.state.data.map((d, index) => {
-        //     return (
-        //         <div key={index}>
-        // <Plot
-        //     data={[
-        //         {
-        //             x: d.x,
-        //             y: d.y,
-        //             type: 'scatter',
-        //             mode: 'markers',
-        //             marker: { color: d.color },
-        //         },
-        //         // { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
-        //     ]}
-        //     layout={{ width: "80wh", height: "80vh" }}
-        // // key={index}
-        // />
-        //         </div>
-        //     )
-        // })
-
-
-        // console.log(plots)
+       
         return (
             <div>
                 <h2 style={{ marginTop: "10px" }} >Simulation </h2>

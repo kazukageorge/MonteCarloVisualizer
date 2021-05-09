@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import { useDebugValue } from 'react';
 import { Form, Button, Card, Container, Row, Col, Image } from 'react-bootstrap'
 import Simulation from './Simulation'
+import Simulation2 from './Simulation2'
 
 import "./styles.css"
 
@@ -9,7 +10,7 @@ class Parameters extends Component {
     // set state
 
     state = {
-        'iteration': 10,
+        'iteration': 1000,
         'framerate': 10,
         'showSimulation': false,
     };
@@ -179,11 +180,16 @@ class Parameters extends Component {
 
                 </Container>
                 {this.state.showSimulation ?
-                    <Simulation
-                        startSimulation={true}
-                        iteration={this.state.iteration}
-                        framerate={this.state.framerate}
-                        loading={true}
+                    // <Simulation
+                    //     startSimulation={true}
+                    //     iteration={this.state.iteration}
+                    //     framerate={this.state.framerate}
+                    //     loading={true}
+                    // />
+
+                    <Simulation2 
+                    iteration={this.state.iteration}
+                    
                     />
                     :
                     <div>
