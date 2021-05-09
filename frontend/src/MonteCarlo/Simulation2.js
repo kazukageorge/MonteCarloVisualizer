@@ -61,12 +61,12 @@ function Simulation2({ iteration }) {
                                             x: data.circle.x,
                                             y: data.circle.y,
                                             mode: 'line',
-                                            marker: {color: data.circle.color},
+                                            marker: { color: data.circle.color },
                                         },
                                     ]}
                                     layout={{
-                                        width: window.innerWidth / 1.4 < window.innerHeight / 1.4 ? window.innerWidth / 1.4 : window.innerHeight / 1.4,
-                                        height: window.innerWidth / 1.4 < window.innerHeight / 1.4 ? window.innerWidth / 1.4 : window.innerHeight / 1.4,
+                                        width: window.innerWidth / 1.8 < window.innerHeight / 1.8 ? window.innerWidth / 1.8 : window.innerHeight / 1.8,
+                                        height: window.innerWidth / 1.8 < window.innerHeight / 1.8 ? window.innerWidth / 1.8 : window.innerHeight / 1.8,
                                         // width: "300px",
                                         // height: "300px",
                                         margin: {
@@ -76,7 +76,7 @@ function Simulation2({ iteration }) {
                                             t: 60,
                                             pad: 0
                                         },
-                                        showlegend: false, 
+                                        showlegend: false,
                                         xaxis: {
                                             range: [-1.1, 1.1]
                                         },
@@ -95,14 +95,54 @@ function Simulation2({ iteration }) {
                                 // max={this.props.iteration / this.props.framerate}
                                 max={iteration - 1}
                                 name='simulation_value'
-                                style={{ height: "50%", width: "80%" }}
+                                style={{ height: "50%", width: "100%" }}
                                 step="1"
                                 value={currentFrame}
                                 onChange={(e) => iterationChangeHandler(e)}
                             />
-                            <p> Frame #{currentFrame} </p>
-
                         </Row>
+
+                        <h3 style={{ textAlign: "center", marginTop:"10px" }}> Frame #{currentFrame} </h3>
+
+
+                        <Row style={{ marginTop: "40px" }}>
+
+                            <Col >
+                                <h3 style={{ color: "#45b6fe", textAlign: "center" }}>
+                                    Points Inside
+                                  
+                                        <h3 style={{ color: "black", marginTop:"10px" }}>
+                                            {data.points[currentFrame].inside}
+                                        </h3>
+                                    
+                                </h3>
+
+                            </Col>
+                            <Col >
+                                <h3 style={{ color: "#FF0000", textAlign: "center" }}>
+                                    Points Inside
+                                  
+                                        <h3 style={{ color: "black", marginTop:"10px" }}>
+                                            {data.points[currentFrame].outside}
+                                        </h3>
+                                    
+                                </h3>
+
+                            </Col>
+                            <Col >
+                                <h3 style={{ color: "black", textAlign: "center" }}>
+                                    &pi; 
+                                  
+                                        <h3 style={{marginTop:"10px" }}>
+                                            {data.points[currentFrame].approx_pi.toFixed(5)}
+                                        </h3>
+                                    
+                                </h3>
+
+                            </Col>
+                        </Row>
+
+
 
 
 
