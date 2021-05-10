@@ -16,9 +16,9 @@ const Header = () => {
                             <LinkContainer to="/pi">
                                 <Nav.Link>&pi;</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to='/protein'>
+                            {/* <LinkContainer to='/protein'>
                                 <Nav.Link href="/protein"> Protein Movement</Nav.Link>
-                            </LinkContainer>
+                            </LinkContainer> */}
 
                         </Nav>
 

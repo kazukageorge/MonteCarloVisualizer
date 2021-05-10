@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Image,  } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import Footer from '../components/Footer'
 import './stylesHomepage.css'
 
 
@@ -8,20 +9,28 @@ const Navigation = () => {
     return (
 
         <div>
-            <h2>Projects</h2>
+            {/* <h2>Projects</h2> */}
             <Container>
                 <Row>
                     <LinkContainer to='/pi' style={{ cursor: "pointer" }}>
 
                         <Col>
                             <img
-                                src="../images/figure_0.png"
+                                src="../images/montecarlo.png"
                                 className="rounded mx-auto d-block"
                                 width="95%"
                                 style={{hover: ''}}
                                 fluid="true"
                                 alt="pi"
                             />
+                             {/* <img
+                                src="montecarlo.png"
+                                className="rounded mx-auto d-block"
+                                width="95%"
+                                style={{hover: ''}}
+                                fluid="true"
+                                alt="pi"
+                            /> */}
                             <h4 className='text-center' >
                                 <strong className="txt" >
                                     Approximating &pi;
@@ -51,14 +60,14 @@ const Navigation = () => {
 
                 </Row>
 
-                <hr />
+                {/* <hr /> */}
 
-                <Row>
+                {/* <Row>
                     <LinkContainer to='/protein' style={{ cursor: "pointer" }}>
 
                         <Col>
                             <Image
-                                src="../images/figure_0.png"
+                                src="../images/tugofwar.gif"
                                 className="rounded mx-auto d-block"
                                 width="95%"
                                 alt="protein"
@@ -72,7 +81,7 @@ const Navigation = () => {
 
                         </Col>
                     </LinkContainer>
-                </Row>
+                </Row> */}
 
 
             </Container>

@@ -9,7 +9,20 @@ const Description = () => {
             <h2>Description</h2>
             <Container>
 
-                <h5>Here we present a project of approximating &pi; using Monte Carlo simulations . </h5>
+                <p>Here we present projects using Monte Carlo simulations. </p>
+                <ol>
+                    <li>Approximating &pi;</li>
+                    <li>Predicting protein movement (published in a peer-reviewed journal, selected as the &nbsp;
+                         <a
+                            href="https://onlinelibrary.wiley.com/doi/10.1111/tra.12639"
+                            style={{ 'color': "#26abff" }}
+                            target="_blank"
+                        >
+                            paper of the month
+                        </a>
+                    )
+                    </li>
+                </ol>
 
 
 
@@ -24,45 +37,41 @@ const Description = () => {
                             Frontend
                       </li>
                     </h3>
+                    
 
                     <ul>
                         <li>
-                            <h5>
-                                React
-
-                            </h5>
+                            React
                         </li>
                     </ul>
                     <h3>
                         <li>
                             Backend
-
-                        </li>
+                      </li>
                     </h3>
                     <ul>
                         <li>
-                            <h5>
-                                Django
-
-                            </h5>
+                            Django
                         </li>
 
                     </ul>
                     <h3>
                         <li>
-                                API call
-
-                        </li>
+                            API call
+                      </li>
                     </h3>
+                    <h3>
                     <ul>
+                       
+                            <li>
 
-                        <li>
-                            <h5>
-                            Django Rest Framework (API call via axios from frontend)
+                                Django Rest Framework (API call via axios from frontend)
 
-                            </h5>
                         </li>
+
                     </ul>
+                    </h3>
+
                 </ol>
 
             </Container>
