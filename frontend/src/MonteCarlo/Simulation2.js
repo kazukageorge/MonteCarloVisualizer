@@ -16,15 +16,13 @@ function Simulation2({ iteration, framerate }) {
     useEffect(() => {
         if (loading) {
             async function getData(iteration, framerate) {
-                const { data } = await axios.get(`http://127.0.0.1:8000/MonteCarlo/iteration=${iteration}_burn=${framerate}`)
+                const { data } = await axios.get(`http://127.0.0.1:8000/MonteCarlo/iteration=${iteration}_framerate=${framerate}`)
                 setData(data)
                 setLoading(false)
-                console.log(data)
+                // console.log(data)
             }
             getData(iteration, framerate)
-
         }
-
     })
 
 
@@ -33,9 +31,8 @@ function Simulation2({ iteration, framerate }) {
         setCurrentFrame(value)
     }
 
-    // console.log(currentFrame, framerate)
-    // console.log(data)
-    console.log((iteration/ framerate))
+    console.log(framerate)
+
 
 
     return (
@@ -52,7 +49,7 @@ function Simulation2({ iteration, framerate }) {
                         </Row>
                         <Row>
                             {/* {plots} */}
-                            <Col md={{ span: 6, offset: 3 }}>
+                            <Col >
 
                                 <Plot
                                     data={[
@@ -71,15 +68,15 @@ function Simulation2({ iteration, framerate }) {
                                         },
                                     ]}
                                     layout={{
-                                        width: window.innerWidth / 1.8 < window.innerHeight / 1.8 ? window.innerWidth / 1.8 : window.innerHeight / 1.8,
-                                        height: window.innerWidth / 1.8 < window.innerHeight / 1.8 ? window.innerWidth / 1.8 : window.innerHeight / 1.8,
-                                        // width: "300px",
-                                        // height: "300px",
+                                        width: window.innerWidth / 2.5 < window.innerHeight / 2.5 ? window.innerWidth / 2.5 : window.innerHeight / 2.5,
+                                        height: window.innerWidth / 2.5 < window.innerHeight / 2.5 ? window.innerWidth / 2.5 : window.innerHeight / 2.5,
+                                        // width: "300",
+                                        // height: "300",
                                         margin: {
-                                            l: 60,
-                                            r: 60,
-                                            b: 60,
-                                            t: 60,
+                                            l: 40,
+                                            r: 40,
+                                            b: 40,
+                                            t: 40,
                                             pad: 0
                                         },
                                         showlegend: false,
@@ -88,7 +85,78 @@ function Simulation2({ iteration, framerate }) {
                                         },
                                         yaxis: {
                                             range: [-1.1, 1.1]
+                                        },
+                                        font: {
+                                            family: 'Helvetica',
+                                            size: 16
+                                        },
+                                    }}
+                                // key={index}
+                                />
+                            </Col>
+
+                            <Col >
+
+                                <Plot
+                                    data={[
+                                        {
+                                            x: data.points[currentFrame].approx_pi_x,
+                                            y: data.points[currentFrame].approx_pi_y,
+                                            name: 'Approximation',
+                                            marker: { color: "black" },
+                                            mode: 'lines',
+                                            line: {
+                                                width: 3
+                                            },
+
+                                        },
+                                        {
+                                            x: data.Pi.x,
+                                            y: data.Pi.y,
+                                            name: 'pi',
+                                            mode: 'lines',
+                                            line: {
+                                                dash: 'dashdot',
+                                                width: 1
+                                            },
+                                            marker: { color: "black" },
                                         }
+
+                                    ]}
+                                    layout={{
+                                        width: window.innerWidth / 2.5 < window.innerHeight / 2.5 ? window.innerWidth / 2.5 : window.innerHeight / 2.5,
+                                        height: window.innerWidth / 2.5 < window.innerHeight / 2.5 ? window.innerWidth / 2.5 : window.innerHeight / 2.5,
+
+                                        margin: {
+                                            l: 40,
+                                            r: 40,
+                                            b: 60,
+                                            t: 40,
+                                            pad: 0
+                                        },
+                                        showlegend: true,
+                                        legend: {
+                                            x: 1,
+                                            xanchor: 'right',
+                                            y: 0
+                                          },
+                                        xaxis: {
+                                            range: [0, iteration],
+                                            title: 'Iterations',
+                                            tick0: 0,
+                                            dtick: framerate,
+                                        },
+                                        yaxis: {
+                                            range: [0, 4],
+                                            tick0: 0,
+                                            dtick: 1,
+                                        },
+                                        font: {
+                                            family: 'Helvetica',
+                                            size: 16
+                                        },
+
+
                                     }}
                                 // key={index}
                                 />
@@ -99,7 +167,7 @@ function Simulation2({ iteration, framerate }) {
                                 type="range"
                                 min={0}
                                 // max={this.props.iteration / this.props.framerate}
-                                max={(iteration/ framerate) }
+                                max={(iteration / framerate)}
                                 name='simulation_value'
                                 style={{ height: "50%", width: "100%" }}
                                 step={1}
@@ -108,46 +176,36 @@ function Simulation2({ iteration, framerate }) {
                             />
                         </Row>
 
-                        <h3 style={{ textAlign: "center", marginTop:"10px" }}> Frame #{currentFrame } </h3>
-                        <h3 style={{ textAlign: "center"}}> Iteration #{currentFrame * framerate } </h3>
+                        <h3 style={{ textAlign: "center", marginTop: "10px" }}> Frame #{currentFrame} </h3>
+                        <h3 style={{ textAlign: "center" }}> Iteration #{currentFrame * framerate} </h3>
 
 
                         <Row style={{ marginTop: "40px" }}>
 
                             <Col >
                                 <h3 style={{ color: "#45b6fe", textAlign: "center" }}>
-                                    Points Inside
-                                  
-                                     
-                                    
+                                    Inside
                                 </h3>
-                                <h3 style={{ color: "black", marginTop:"10px", textAlign: "center"  }}>
-                                            {data.points[currentFrame].inside}
-                                        </h3>
-
+                                <h3 style={{ color: "black", marginTop: "10px", textAlign: "center" }}>
+                                    {data.points[currentFrame].inside}
+                                </h3>
                             </Col>
                             <Col >
                                 <h3 style={{ color: "#FF0000", textAlign: "center" }}>
-                                    Points Outside
-                                  
-                                        
-                                    
+                                    Outside
                                 </h3>
-                                <h3 style={{ color: "black", marginTop:"10px" , textAlign: "center"}}>
-                                            {data.points[currentFrame].outside}
-                                        </h3>
+                                <h3 style={{ color: "black", marginTop: "10px", textAlign: "center" }}>
+                                    {data.points[currentFrame].outside}
+                                </h3>
 
                             </Col>
                             <Col >
                                 <h3 style={{ color: "black", textAlign: "center" }}>
-                                    &pi; 
-                                  
-                                     
-                                    
+                                    &pi;
                                 </h3>
-                                <h3 style={{marginTop:"10px" , textAlign: "center"}}>
-                                            {data.points[currentFrame].approx_pi.toFixed(5)}
-                                        </h3>
+                                <h3 style={{ marginTop: "10px", textAlign: "center" }}>
+                                    {data.points[currentFrame].approx_pi.toFixed(5)}
+                                </h3>
 
                             </Col>
                         </Row>

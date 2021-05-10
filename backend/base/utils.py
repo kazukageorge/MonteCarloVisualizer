@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 import time
+import copy
 
 def get_graph():
     buffer = BytesIO()
@@ -37,6 +38,8 @@ def getDataPoints(N, burn):
     X = [uniform(-1,1) for _ in range(N+1)]
     Y = [uniform(-1,1) for _ in range(N+1)]
     Color = ['#FF0000' if X[i]**2 + Y[i]**2 > 1 else '#45b6fe' for i in range(N+1)]
+    Pi = [math.pi for _ in range(N+1)]
+    X_index = [i for i in range(N+1)]
 
     inside = 0
     outside = 0
@@ -51,6 +54,13 @@ def getDataPoints(N, burn):
     data[0]['inside'] = 0
     data[0]['outside'] = 0
     data[0]['approx_pi'] = 0
+
+    data[0]['approx_pi_x'] = 0
+    data[0]['approx_pi_y'] = 0
+
+    approx_pi_list = [0]
+    x_index = [0]
+
 
     for i in range(1,N+1):
         if X[i]**2 + Y[i]**2 > 1:
@@ -69,6 +79,19 @@ def getDataPoints(N, burn):
         data[i]['outside'] = outside
         data[i]['approx_pi'] = approx
 
+        x_index.append(i)
+        approx_pi_list.append(approx)
+        temp = copy.deepcopy(approx_pi_list)
+
+
+        data[i]['approx_pi_x'] = x_index
+        data[i]['approx_pi_y'] = temp
+
+        approx_pi_list = temp
+
+
+
+
     
 
     return data[::burn]
@@ -80,6 +103,17 @@ def getCircle():
     
     return data
 
+
+def getPi(N):
+    Pi = [math.pi for _ in range(N+1)]
+    x = [i  for i in range(N+1)]
+
+    data = {}
+
+    data['x'] = x
+    data['y'] = Pi
+    
+    return data
 
 
 
