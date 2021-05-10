@@ -29,7 +29,7 @@ def getData(request, pk):
 
     data = {'points': dataPoints, 'circle': dataCircle, 'Pi': dataPi}
 
-    # print(data)
+    # print(data['points'])
 
     return Response(data)
 
