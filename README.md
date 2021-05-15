@@ -3,8 +3,7 @@
  
 <img src="/images/montecarlo.gif" width="800"/>
 
-#Website
-### <a href="https://montecarlovisualizerpi.herokuapp.com/#/">Click here</a>
+#  <a href="https://montecarlovisualizerpi.herokuapp.com/#/">Website Link</a>
 ### Deployed using  <a href="https://github.com/kazukageorge/MonteCarloVisualizer_deploy">this repository</a>
 
 
